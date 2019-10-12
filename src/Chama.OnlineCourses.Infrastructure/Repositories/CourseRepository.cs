@@ -4,7 +4,7 @@ using Chama.OnlineCourses.Domain.AggregateModels.Course;
 
 namespace Chama.OnlineCourses.Infrastructure.Repositories
 {
-    public class CourseRepository : IRepository<ICosmosDbContext, Course, Guid>
+    public class CourseRepository : ICourseRepository
     {
         private readonly ICosmosDbContext _context;
 
