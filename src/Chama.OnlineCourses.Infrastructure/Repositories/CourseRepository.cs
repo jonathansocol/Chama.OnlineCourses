@@ -1,10 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
+using Chama.OnlineCourses.Domain.AggregateModels.Course;
 
 namespace Chama.OnlineCourses.Infrastructure.Repositories
 {
-    public class CourseRepository
+    public class CourseRepository : IRepository<ICosmosDbContext, Course, Guid>
     {
+        private readonly ICosmosDbContext _context;
+
+        public CourseRepository(ICosmosDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<Course> FindById(Guid id)
+        {
+            var client = _context.GetClient();
+            var uri = _context.GetDocumentUri("course");
+
+            var course = await client.ReadDocumentAsync<Course>(uri);
+
+            return course;
+        }
+
+        public async Task Upsert(Course course)
+        {
+            var client = _context.GetClient();
+            var uri = _context.GetDocumentUri("course");
+
+            await client.UpsertDocumentAsync(uri, course);
+        }
     }
 }

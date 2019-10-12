@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Chama.OnlineCourses.Domain.AggregateModels.Shared;
+using Chama.OnlineCourses.Domain.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Chama.OnlineCourses.Domain.AggregateModels.Course
 {
-    public class Course
+    public class Course : Entity<Guid>
     {
-        public Guid Id { get; set; }
-
         public string Name { get; set; }
 
         public string Teacher { get; set; }
@@ -23,12 +23,12 @@ namespace Chama.OnlineCourses.Domain.AggregateModels.Course
 
             if (student != null)
             {
-                throw new ArgumentException("Student exists");
+                throw new StudentAlreadyRegisteredException(student.FullName);
             }
 
             if (Students.Count == Capacity)
             {
-                throw new ArgumentException("Course is full");
+                throw new CourseIsFullException(Name);
             }
 
             Students.Add(newStudent);

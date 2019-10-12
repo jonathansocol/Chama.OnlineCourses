@@ -16,8 +16,8 @@ namespace Chama.OnlineCourses.Api.V1.Commands
 
         public RegisterStudentCommandHandler(ICourseRepository repository, IMapper mapper)
         {
-            _repository = repository;
-            _mapper = mapper;
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         public async Task<CourseDto> Handle(RegisterStudentCommand request, CancellationToken cancellationToken)

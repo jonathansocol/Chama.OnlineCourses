@@ -20,6 +20,11 @@ namespace Chama.OnlineCourses.Api.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Registers a student for a given course.
+        /// </summary>
+        /// <param name="command"><see cref="RegisterStudentCommand"/></param>
+        /// <returns>The course the student was registered to.</returns>
         [HttpPost]
         [Route(CourseRoute.RegisterStudent)]
         public async Task<IActionResult> RegisterStudent([FromBody] RegisterStudentCommand command)

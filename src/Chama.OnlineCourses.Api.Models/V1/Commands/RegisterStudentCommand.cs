@@ -9,8 +9,10 @@ namespace Chama.OnlineCourses.Api.Models.V1.Commands
     [DataContract]
     public class RegisterStudentCommand
     {
+        [DataMember]
         public Guid CourseId { get; set; }
 
+        [DataMember]
         public StudentDto Student { get; set; }
     }
 }
