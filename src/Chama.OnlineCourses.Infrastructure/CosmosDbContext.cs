@@ -1,5 +1,6 @@
 ﻿using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading.Tasks;
 
@@ -12,12 +13,16 @@ namespace Chama.OnlineCourses.Infrastructure
         private readonly string _endpointUrl;
         private readonly string _authorizationKey;
 
-        public CosmosDbContext(string databaseName, string collectionName, string endpointUrl, string authorizationKey)
+        public CosmosDbContext(IConfiguration configuration)
         {
-            _databaseName = databaseName ?? throw new ArgumentNullException(nameof(databaseName));
-            _collectionName = collectionName ?? throw new ArgumentNullException(nameof(collectionName));
-            _endpointUrl = endpointUrl ?? throw new ArgumentNullException(nameof(endpointUrl));
-            _authorizationKey = authorizationKey ?? throw new ArgumentNullException(nameof(authorizationKey));
+            _databaseName = configuration.GetSection("CosmosDb:DatabaseName").Value ??
+                throw new ArgumentNullException(nameof(_databaseName));
+            _collectionName = configuration.GetSection("CosmosDb:CollectionName").Value ?? 
+                throw new ArgumentNullException(nameof(_collectionName));
+            _endpointUrl = configuration.GetSection("CosmosDb:EndpointUrl").Value ??
+                throw new ArgumentNullException(nameof(_endpointUrl));
+            _authorizationKey = configuration.GetSection("CosmosDb:AuthorizationKey").Value ??
+                throw new ArgumentNullException(nameof(_authorizationKey));
         }
 
         public IDocumentClient GetClient()

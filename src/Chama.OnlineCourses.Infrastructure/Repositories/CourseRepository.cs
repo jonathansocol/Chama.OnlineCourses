@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Chama.OnlineCourses.Domain.AggregateModels.Course;
+using Microsoft.Azure.Documents;
+using Microsoft.Azure.Documents.Client;
 
 namespace Chama.OnlineCourses.Infrastructure.Repositories
 {
@@ -17,8 +19,9 @@ namespace Chama.OnlineCourses.Infrastructure.Repositories
         {
             var client = _context.GetClient();
             var uri = _context.GetDocumentUri("course");
+            var requestOptions = new RequestOptions { PartitionKey = new PartitionKey(id.ToString()) };
 
-            var course = await client.ReadDocumentAsync<Course>(uri);
+            var course = await client.ReadDocumentAsync<Course>(uri, requestOptions);
 
             return course;
         }
