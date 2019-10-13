@@ -23,7 +23,7 @@ namespace Chama.OnlineCourses.RegistrationWorker
 
             if (course == null)
             {
-                log.LogInformation($"Course with the Id '{command.CourseId}' could not be found.");
+                log.LogError($"Course with the Id '{command.CourseId}' could not be found.");
             }
 
             var student = MapStudent(command);
