@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace Chama.OnlineCourses.Api.Models.V1.Commands
 {
     [DataContract]
-    public class RegisterStudentCommand
+    public class RegisterStudentAsyncCommand
     {
         [DataMember]
         public Guid CourseId { get; set; }

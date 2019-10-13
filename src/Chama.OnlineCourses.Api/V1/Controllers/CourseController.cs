@@ -33,5 +33,14 @@ namespace Chama.OnlineCourses.Api.Controllers
 
             return Created(string.Empty, result);
         }
+
+        [HttpPost]
+        [Route(CourseRoute.RegisterStudentAsync)]
+        public async Task<IActionResult> RegisterStudentAsync([FromBody] RegisterStudentAsyncCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            return Created(string.Empty, result);
+        }
     }
 }

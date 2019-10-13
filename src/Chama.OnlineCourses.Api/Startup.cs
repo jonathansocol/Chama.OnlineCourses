@@ -5,6 +5,7 @@ using Chama.OnlineCourses.Api.V1.Exceptions;
 using Chama.OnlineCourses.Api.V1.Validators.Commands;
 using Chama.OnlineCourses.Domain.Exceptions;
 using Chama.OnlineCourses.Infrastructure;
+using Chama.OnlineCourses.Infrastructure.Providers;
 using Chama.OnlineCourses.Infrastructure.Repositories;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -46,11 +47,19 @@ namespace Chama.OnlineCourses.Api
 
             ConfigureValidators(services);
             ConfigureRepositories(services);
+            ConfigureServiceBus(services);
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "Chama Online Courses API", Version = "v1" });
             });
+        }
+
+        private void ConfigureServiceBus(IServiceCollection services)
+        {
+            services.Configure<AzureServiceBusSettings>("AzureServiceBus", Configuration);
+
+            services.AddTransient<IServiceBusPublisher, ASBQueuePublisher>();
         }
 
         private void ConfigureValidators(IServiceCollection services)
