@@ -5,15 +5,17 @@ VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chama.OnlineCourses.Api", "Chama.OnlineCourses.Api\Chama.OnlineCourses.Api.csproj", "{F4754E2F-9F40-4702-BFA9-3FDD692F90C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chama.OnlineCourses.Domain", "Chama.OnlineCourses.Domain\Chama.OnlineCourses.Domain.csproj", "{D6BDF6CF-927A-4DC9-84E3-C52F4A755C6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chama.OnlineCourses.Domain", "Chama.OnlineCourses.Domain\Chama.OnlineCourses.Domain.csproj", "{D6BDF6CF-927A-4DC9-84E3-C52F4A755C6B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{5C6F5257-75E2-4F97-A47B-B99C8B8F194C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chama.OnlineCourses.Api.Models", "Chama.OnlineCourses.Api.Models\Chama.OnlineCourses.Api.Models.csproj", "{B67BB483-1D52-4EF7-AE82-6B6143CA82D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chama.OnlineCourses.Api.Models", "Chama.OnlineCourses.Api.Models\Chama.OnlineCourses.Api.Models.csproj", "{B67BB483-1D52-4EF7-AE82-6B6143CA82D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chama.OnlineCourses.Infrastructure", "Chama.OnlineCourses.Infrastructure\Chama.OnlineCourses.Infrastructure.csproj", "{B6EA7109-5142-440E-88C4-E6D1FB1B3E45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chama.OnlineCourses.Infrastructure", "Chama.OnlineCourses.Infrastructure\Chama.OnlineCourses.Infrastructure.csproj", "{B6EA7109-5142-440E-88C4-E6D1FB1B3E45}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{05F1F656-2E43-4833-B20F-DED3278E00A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chama.OnlineCourses.Api.Tests", "Chama.OnlineCourses.Api.Tests\Chama.OnlineCourses.Api.Tests.csproj", "{1A3B9C3F-26F1-4FF6-9CE5-416E5E493D6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{B6EA7109-5142-440E-88C4-E6D1FB1B3E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6EA7109-5142-440E-88C4-E6D1FB1B3E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6EA7109-5142-440E-88C4-E6D1FB1B3E45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A3B9C3F-26F1-4FF6-9CE5-416E5E493D6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3B9C3F-26F1-4FF6-9CE5-416E5E493D6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A3B9C3F-26F1-4FF6-9CE5-416E5E493D6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A3B9C3F-26F1-4FF6-9CE5-416E5E493D6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +53,7 @@ Global
 		{B67BB483-1D52-4EF7-AE82-6B6143CA82D7} = {5C6F5257-75E2-4F97-A47B-B99C8B8F194C}
 		{B6EA7109-5142-440E-88C4-E6D1FB1B3E45} = {5C6F5257-75E2-4F97-A47B-B99C8B8F194C}
 		{05F1F656-2E43-4833-B20F-DED3278E00A4} = {5C6F5257-75E2-4F97-A47B-B99C8B8F194C}
+		{1A3B9C3F-26F1-4FF6-9CE5-416E5E493D6B} = {05F1F656-2E43-4833-B20F-DED3278E00A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AD0A375D-455B-40C7-B007-2C38D9046AA7}
