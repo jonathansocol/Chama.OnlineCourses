@@ -1,6 +1,7 @@
 ﻿using Chama.OnlineCourses.Domain.AggregateModels.Analytics;
 using Chama.OnlineCourses.Infrastructure.Contexts;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,6 +14,11 @@ namespace Chama.OnlineCourses.Infrastructure.Repositories
         public ReportingRepository(ReportingContext context)
         {
             _context = context;
+        }
+
+        public async Task<List<CourseStudentsStatistic>> GetAll()
+        {
+            return _context.CourseStudentsStatistics.ToList();
         }
 
         public async Task<CourseStudentsStatistic> FindById(Guid id)

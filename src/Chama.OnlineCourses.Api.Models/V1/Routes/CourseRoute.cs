@@ -8,5 +8,7 @@ namespace Chama.OnlineCourses.Api.Models.V1.Routes
     {
         public const string RegisterStudent = "RegisterStudent";
         public const string RegisterStudentAsync = "RegisterStudentAsync";
+        public const string GetCourses = "GetCourses";
+        public const string GetCourseDetails = "GetCourseDetails";
     }
 }
