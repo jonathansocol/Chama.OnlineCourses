@@ -4,7 +4,7 @@ using Chama.OnlineCourses.Api.V1.Commands;
 using Chama.OnlineCourses.Api.V1.Exceptions;
 using Chama.OnlineCourses.Api.V1.Validators.Commands;
 using Chama.OnlineCourses.Domain.Exceptions;
-using Chama.OnlineCourses.Infrastructure;
+using Chama.OnlineCourses.Infrastructure.Contexts;
 using Chama.OnlineCourses.Infrastructure.Providers;
 using Chama.OnlineCourses.Infrastructure.Repositories;
 using FluentValidation;

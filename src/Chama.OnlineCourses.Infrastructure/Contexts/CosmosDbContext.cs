@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Chama.OnlineCourses.Infrastructure
+namespace Chama.OnlineCourses.Infrastructure.Contexts
 {
     public class CosmosDbContext : ICosmosDbContext
     {
@@ -20,7 +20,7 @@ namespace Chama.OnlineCourses.Infrastructure
         {
             _databaseName = configuration.GetSection("CosmosDb:DatabaseName").Value ??
                 throw new ArgumentNullException(nameof(_databaseName));
-            _collectionName = configuration.GetSection("CosmosDb:CollectionName").Value ?? 
+            _collectionName = configuration.GetSection("CosmosDb:CollectionName").Value ??
                 throw new ArgumentNullException(nameof(_collectionName));
             _endpointUrl = configuration.GetSection("CosmosDb:EndpointUrl").Value ??
                 throw new ArgumentNullException(nameof(_endpointUrl));
@@ -32,7 +32,7 @@ namespace Chama.OnlineCourses.Infrastructure
         {
             _databaseName = databaseName ?? throw new ArgumentNullException(nameof(databaseName));
             _collectionName = collectionName ?? throw new ArgumentNullException(nameof(collectionName));
-            _endpointUrl =  endpointUrl ?? throw new ArgumentNullException(nameof(endpointUrl));
+            _endpointUrl = endpointUrl ?? throw new ArgumentNullException(nameof(endpointUrl));
             _authorizationKey = authorizationKey ?? throw new ArgumentNullException(nameof(authorizationKey));
         }
 

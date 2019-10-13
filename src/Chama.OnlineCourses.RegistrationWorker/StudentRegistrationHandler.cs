@@ -1,5 +1,5 @@
 using Chama.OnlineCourses.Domain.AggregateModels.Course;
-using Chama.OnlineCourses.Infrastructure;
+using Chama.OnlineCourses.Infrastructure.Contexts;
 using Chama.OnlineCourses.Infrastructure.Repositories;
 using Chama.OnlineCourses.IntegrationEvents;
 using Microsoft.Azure.WebJobs;

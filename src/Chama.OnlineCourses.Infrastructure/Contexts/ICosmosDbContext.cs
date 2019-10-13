@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents;
 
-namespace Chama.OnlineCourses.Infrastructure
+namespace Chama.OnlineCourses.Infrastructure.Contexts
 {
     public interface ICosmosDbContext
     {

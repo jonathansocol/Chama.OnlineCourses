@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using Chama.OnlineCourses.Domain.AggregateModels.Course;
+using Chama.OnlineCourses.Infrastructure.Contexts;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Newtonsoft.Json;
