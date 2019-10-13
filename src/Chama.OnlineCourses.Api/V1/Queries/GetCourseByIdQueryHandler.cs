@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Chama.OnlineCourses.Api.Models.V1.Models;
+using Chama.OnlineCourses.Api.V1.Exceptions;
 using Chama.OnlineCourses.Infrastructure.Repositories;
 using MediatR;
 using System;
@@ -27,6 +28,11 @@ namespace Chama.OnlineCourses.Api.V1.Queries
         {
             var course = await _courseRepository.FindById(request.CourseId);
             var courseStatistics = await _reportingRepository.FindById(request.CourseId);
+
+            if (course == null || courseStatistics == null)
+            {
+                throw new CourseNotFoundException(request.CourseId.ToString());
+            }
 
             var courseStudentsDetails = new CourseStudentsDetailsDto
             {

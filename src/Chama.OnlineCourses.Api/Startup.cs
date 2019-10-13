@@ -118,7 +118,7 @@ namespace Chama.OnlineCourses.Api
 
                 options.Map<CourseIsFullException>().ToStatusCode(HttpStatusCode.BadRequest);
                 options.Map<StudentAlreadyRegisteredException>().ToStatusCode(HttpStatusCode.BadRequest);
-                options.Map<CourseNotFoundException>().ToStatusCode(HttpStatusCode.BadRequest);
+                options.Map<CourseNotFoundException>().ToStatusCode(HttpStatusCode.NotFound);
                 options.Map<Exception>().ToStatusCode(HttpStatusCode.InternalServerError);
             });
         }
