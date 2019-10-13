@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Chama.OnlineCourses.Api.V1.Validators.Commands
 {
-    public class RegisterStudentCommandValidator : AbstractValidator<RegisterStudentCommand>
+    public class RegisterStudentAsyncCommandValidator : AbstractValidator<RegisterStudentAsyncCommand>
     {
-        public RegisterStudentCommandValidator()
+        public RegisterStudentAsyncCommandValidator()
         {
             RuleFor(x => x.CourseId)
                 .NotNull()

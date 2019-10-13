@@ -24,6 +24,7 @@
     <ProjectReference Include="..\Chama.OnlineCourses.Api.Models\Chama.OnlineCourses.Api.Models.csproj" />
     <ProjectReference Include="..\Chama.OnlineCourses.Domain\Chama.OnlineCourses.Domain.csproj" />
     <ProjectReference Include="..\Chama.OnlineCourses.Infrastructure\Chama.OnlineCourses.Infrastructure.csproj" />
+    <ProjectReference Include="..\Chama.OnlineCourses.IntegrationEvents\Chama.OnlineCourses.IntegrationEvents.csproj" />
   </ItemGroup>
 
 </Project>
