@@ -28,6 +28,14 @@ namespace Chama.OnlineCourses.Infrastructure
                 throw new ArgumentNullException(nameof(_authorizationKey));
         }
 
+        public CosmosDbContext(string databaseName, string collectionName, string endpointUrl, string authorizationKey)
+        {
+            _databaseName = databaseName ?? throw new ArgumentNullException(nameof(databaseName));
+            _collectionName = collectionName ?? throw new ArgumentNullException(nameof(collectionName));
+            _endpointUrl =  endpointUrl ?? throw new ArgumentNullException(nameof(endpointUrl));
+            _authorizationKey = authorizationKey ?? throw new ArgumentNullException(nameof(authorizationKey));
+        }
+
         public IDocumentClient GetClient()
         {
             var serializerSettings = new JsonSerializerSettings
