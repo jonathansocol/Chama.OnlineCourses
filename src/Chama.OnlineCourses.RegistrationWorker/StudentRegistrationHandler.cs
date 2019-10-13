@@ -24,6 +24,8 @@ namespace Chama.OnlineCourses.RegistrationWorker
             if (course == null)
             {
                 log.LogError($"Course with the Id '{command.CourseId}' could not be found.");
+
+                return;
             }
 
             var student = MapStudent(command);
@@ -35,6 +37,8 @@ namespace Chama.OnlineCourses.RegistrationWorker
             catch (Exception ex)
             {
                 log.LogError(ex.Message);
+
+                return;
             }
 
             await repository.Upsert(course);
