@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Threading.Tasks;
-using System;
 using Chama.OnlineCourses.Infrastructure.Contexts;
 using Chama.OnlineCourses.Infrastructure.Repositories;
 
@@ -34,13 +33,9 @@ namespace Chama.OnlineCourses.ReportingWorker
             foreach (var document in input)
             {
                 var course = JsonConvert.DeserializeObject<Course>(document.ToString());
+                var statistics = GetCourseStatistics(course);
 
-                if (course.Students.Any())
-                {
-                    var statistics = GetCourseStatistics(course);
-
-                    await _repository.Upsert(statistics);
-                }
+                await _repository.Upsert(statistics);
             }
         }
 
@@ -49,9 +44,9 @@ namespace Chama.OnlineCourses.ReportingWorker
             var statistics = new CourseStudentsStatistic
             {
                 CourseId = course.Id,
-                MinimumStudentAge = course.Students.Min(x => x.Age),
-                MaximumStudentAge = course.Students.Max(x => x.Age),
-                AverageStudentAge = Convert.ToInt32(course.Students.Average(x => x.Age))
+                MinimumStudentAge = course.Students.Min(x => x?.Age),
+                MaximumStudentAge = course.Students.Max(x => x?.Age),
+                AverageStudentAge = (int?)course.Students.Average(x => x?.Age)
             };
 
             return statistics;

@@ -23,13 +23,13 @@ namespace Chama.OnlineCourses.Api.Models.V1.Models
         public int NumberOfStudents { get; set; }
 
         [DataMember]
-        public int MinimumStudentAge { get; set; }
+        public int? MinimumStudentAge { get; set; }
 
         [DataMember]
-        public int MaximumStudentAge { get; set; }
+        public int? MaximumStudentAge { get; set; }
 
         [DataMember]
-        public int AverageStudentAge { get; set; }
+        public int? AverageStudentAge { get; set; }
 
         [DataMember]
         public List<StudentDto> Students { get; set; }
