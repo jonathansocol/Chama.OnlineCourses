@@ -1,0 +1,12 @@
+{
+    "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "ASBConnectionString": "Endpoint=sb://onlinecourses-prd-bus.servicebus.windows.net/;SharedAccessKeyName=Listen;SharedAccessKey=I54nFiqFmn6o40/8U+ID/wiYUkp9cACJ3Zyvi9gfDeE=",
+    "CosmosDb:DatabaseName": "onlinecourses",
+    "CosmosDb:CollectionName": "courses",
+    "CosmosDb:EndpointUrl": "https://onlinecourses-prd-cdb.documents.azure.com:443/",
+    "CosmosDb:AuthorizationKey": "CjKpOvPPo0vJNKjujiujVEWPkuMzqwz4VTYl3HL5UhextQor1jEebDBDiayKNq3HiKcYGgZtP56eCVZYjBeUrA=="
+  }
+}

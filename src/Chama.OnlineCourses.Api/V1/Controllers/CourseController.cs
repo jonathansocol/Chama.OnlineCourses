@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Chama.OnlineCourses.Api.Models.V1.Routes;
 using Chama.OnlineCourses.Api.V1.Commands;
+using Chama.OnlineCourses.Api.V1.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,13 +32,22 @@ namespace Chama.OnlineCourses.Api.Controllers
             return Created(string.Empty, result);
         }
 
-        [HttpPost]
-        [Route(CourseRoute.RegisterStudentAsync)]
-        public async Task<IActionResult> RegisterStudentAsync([FromBody] RegisterStudentAsyncCommand command)
+        [HttpGet]
+        [Route(CourseRoute.GetCourses)]
+        public async Task<IActionResult> GetCourses([FromQuery] GetCoursesQuery query)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(query);
 
-            return Created(string.Empty, result);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route(CourseRoute.GetCourseDetails)]
+        public async Task<IActionResult> GetCourseDetails([FromQuery] GetCourseByIdQuery query)
+        {
+            var result = await _mediator.Send(query);
+
+            return Ok(result);
         }
     }
 }

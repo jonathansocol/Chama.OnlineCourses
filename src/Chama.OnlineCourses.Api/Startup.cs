@@ -4,7 +4,7 @@ using Chama.OnlineCourses.Api.V1.Commands;
 using Chama.OnlineCourses.Api.V1.Exceptions;
 using Chama.OnlineCourses.Api.V1.Validators.Commands;
 using Chama.OnlineCourses.Domain.Exceptions;
-using Chama.OnlineCourses.Infrastructure;
+using Chama.OnlineCourses.Infrastructure.Contexts;
 using Chama.OnlineCourses.Infrastructure.Providers;
 using Chama.OnlineCourses.Infrastructure.Repositories;
 using FluentValidation;
@@ -14,6 +14,7 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
@@ -70,6 +71,14 @@ namespace Chama.OnlineCourses.Api
         {
             services.AddTransient<ICourseRepository, CourseRepository>();
             services.AddTransient<ICosmosDbContext, CosmosDbContext>();
+
+            services.AddEntityFrameworkSqlServer()
+                .AddDbContext<ReportingContext>(options => 
+                {
+                    options.UseSqlServer(Configuration.GetConnectionString("Sql"));
+                },ServiceLifetime.Scoped);
+
+            services.AddTransient<IReportingRepository, ReportingRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

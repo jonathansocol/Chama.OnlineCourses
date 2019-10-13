@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Chama.OnlineCourses.Domain.AggregateModels.Course;
+using Chama.OnlineCourses.Infrastructure.Contexts;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Newtonsoft.Json;
@@ -15,6 +18,15 @@ namespace Chama.OnlineCourses.Infrastructure.Repositories
         public CourseRepository(ICosmosDbContext context)
         {
             _context = context;
+        }
+
+        public async Task<List<Course>> GetAll()
+        {
+            var client = _context.GetClient();
+            var uri = _context.GetDocumentCollectionUri();
+            var courses = client.CreateDocumentQuery<Course>(uri).ToList();
+
+            return courses;
         }
 
         public async Task<Course> FindById(Guid id)

@@ -1,0 +1,9 @@
+{
+    "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "CosmosDb:ConnectionString": "AccountEndpoint=https://onlinecourses-prd-cdb.documents.azure.com:443/;AccountKey=CjKpOvPPo0vJNKjujiujVEWPkuMzqwz4VTYl3HL5UhextQor1jEebDBDiayKNq3HiKcYGgZtP56eCVZYjBeUrA==;",
+    "Sql:ConnectionString": "Server=tcp:onlinecourses-prd-sql.database.windows.net,1433;Initial Catalog=reporting;Persist Security Info=False;User ID=chamaadmin;Password=P4ssw0rd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+  }
+}
