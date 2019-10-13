@@ -1,17 +1,23 @@
 ﻿using AutoMapper;
 using Chama.OnlineCourses.Api.Infrastructure;
 using Chama.OnlineCourses.Api.V1.Commands;
+using Chama.OnlineCourses.Api.V1.Exceptions;
 using Chama.OnlineCourses.Api.V1.Validators.Commands;
+using Chama.OnlineCourses.Domain.Exceptions;
 using Chama.OnlineCourses.Infrastructure;
 using Chama.OnlineCourses.Infrastructure.Repositories;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using GlobalExceptionHandler.WebApi;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using System;
+using System.Net;
 
 namespace Chama.OnlineCourses.Api
 {
@@ -36,7 +42,7 @@ namespace Chama.OnlineCourses.Api
                 .AddFluentValidation();
 
             services.AddMediatR(typeof(Startup).Assembly);
-            services.AddAutoMapper(typeof(Startup).Assembly);
+            services.AddAutoMapper(typeof(AutoMapperProfile));
 
             ConfigureValidators(services);
             ConfigureRepositories(services);
@@ -70,6 +76,8 @@ namespace Chama.OnlineCourses.Api
                 app.UseHsts();
             }
 
+            ConfigureExceptionHandlers(app);
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -78,6 +86,23 @@ namespace Chama.OnlineCourses.Api
 
             app.UseHttpsRedirection();
             app.UseMvc();
+        }
+
+        private static void ConfigureExceptionHandlers(IApplicationBuilder app)
+        {
+            app.UseGlobalExceptionHandler(options =>
+            {
+                options.ContentType = "application/json";
+                options.ResponseBody(s => JsonConvert.SerializeObject(new
+                {
+                    Message = s.Message
+                }));
+
+                options.Map<CourseIsFullException>().ToStatusCode(HttpStatusCode.BadRequest);
+                options.Map<StudentAlreadyRegisteredException>().ToStatusCode(HttpStatusCode.BadRequest);
+                options.Map<CourseNotFoundException>().ToStatusCode(HttpStatusCode.BadRequest);
+                options.Map<Exception>().ToStatusCode(HttpStatusCode.InternalServerError);
+            });
         }
     }
 }

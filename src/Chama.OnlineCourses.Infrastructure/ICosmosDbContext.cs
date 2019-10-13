@@ -8,5 +8,6 @@ namespace Chama.OnlineCourses.Infrastructure
     {
         IDocumentClient GetClient();
         Uri GetDocumentUri(string documentId);
+        Uri GetDocumentCollectionUri();
     }
 }

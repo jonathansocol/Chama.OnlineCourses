@@ -1,7 +1,10 @@
 ﻿using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Chama.OnlineCourses.Infrastructure
@@ -27,12 +30,23 @@ namespace Chama.OnlineCourses.Infrastructure
 
         public IDocumentClient GetClient()
         {
-            return new DocumentClient(new Uri(_endpointUrl), _authorizationKey);
+            var serializerSettings = new JsonSerializerSettings
+            {
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
+            return new DocumentClient(new Uri(_endpointUrl), _authorizationKey, serializerSettings);
         }
 
         public Uri GetDocumentUri(string documentId)
         {
             return UriFactory.CreateDocumentUri(_databaseName, _collectionName, documentId);
+        }
+
+        public Uri GetDocumentCollectionUri()
+        {
+            return UriFactory.CreateDocumentCollectionUri(_databaseName, _collectionName);
         }
     }
 }

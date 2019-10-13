@@ -14,7 +14,9 @@ namespace Chama.OnlineCourses.Domain.AggregateModels.Course
 
         public int Capacity { get; set; }
 
-        public List<Student> Students { get; set; }
+        public string Category { get; set; }
+
+        public List<Student> Students { get; private set; } = new List<Student>();
 
 
         public void AddStudent(Student newStudent)

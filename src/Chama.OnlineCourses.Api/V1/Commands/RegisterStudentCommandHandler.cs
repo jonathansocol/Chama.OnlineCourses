@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Chama.OnlineCourses.Api.Models.V1.Models;
+using Chama.OnlineCourses.Api.V1.Exceptions;
 using Chama.OnlineCourses.Domain.AggregateModels.Course;
 using Chama.OnlineCourses.Infrastructure.Repositories;
 using MediatR;
@@ -26,12 +27,14 @@ namespace Chama.OnlineCourses.Api.V1.Commands
 
             if (course == null)
             {
-                throw new NullReferenceException(nameof(course));
+                throw new CourseNotFoundException(request.CourseId.ToString());
             }
 
             var student = _mapper.Map<Student>(request.Student);
 
             course.AddStudent(student);
+
+            await _repository.Upsert(course);
 
             return _mapper.Map<CourseDto>(course);
         }
