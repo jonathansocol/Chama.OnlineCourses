@@ -16,34 +16,30 @@ namespace Chama.OnlineCourses.RegistrationWorker
         public static async Task Run([ServiceBusTrigger("register-student", Connection = "ASBConnectionString")]string message, ILogger log)
         {
             var command = JsonConvert.DeserializeObject<RegisterStudentIntegrationCommand>(message);
-
             var repository = GetCosmosDbRepository();
-
             var course = await repository.FindById(command.CourseId);
 
-            if (course == null)
+            if (course != null)
+            {
+                var student = MapStudent(command);
+
+                try
+                {
+                    course.AddStudent(student);
+
+                    await repository.Upsert(course);
+
+                    log.LogInformation($"Student {student.FullName} succesfully registered.");
+                }
+                catch (Exception ex)
+                {
+                    log.LogError(ex.Message);
+                }
+            }
+            else
             {
                 log.LogError($"Course with the Id '{command.CourseId}' could not be found.");
-
-                return;
             }
-
-            var student = MapStudent(command);
-
-            try
-            {
-                course.AddStudent(student);
-            }
-            catch (Exception ex)
-            {
-                log.LogError(ex.Message);
-
-                return;
-            }
-
-            await repository.Upsert(course);
-
-            log.LogInformation($"User registered.");
         }
 
         private static Student MapStudent(RegisterStudentIntegrationCommand command)

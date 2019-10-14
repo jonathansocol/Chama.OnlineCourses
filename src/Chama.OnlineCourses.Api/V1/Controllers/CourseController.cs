@@ -32,6 +32,15 @@ namespace Chama.OnlineCourses.Api.Controllers
             return Created(string.Empty, result);
         }
 
+        [HttpPost]
+        [Route(CourseRoute.RegisterStudentAsync)]
+        public async Task<IActionResult> RegisterStudentAsync([FromBody] RegisterStudentAsyncCommand command)
+        {
+            await _mediator.Send(command);
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route(CourseRoute.GetCourses)]
         public async Task<IActionResult> GetCourses([FromQuery] GetCoursesQuery query)
